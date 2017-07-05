@@ -1,0 +1,9 @@
+digraph MatrizOrtogonal_200412823 {
+    rankdir = LR
+    graph [ranksep=0.25 nodesep=0.25] 
+    node[shape= box style = filled color = limegreen] 
+    edge[color= black] 
+
+   label = " Matriz Ortogonal Inicial   "  
+ 
+}
