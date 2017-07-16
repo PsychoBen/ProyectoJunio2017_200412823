@@ -311,15 +311,17 @@ class arbolABBPlayer:
             print "nodo no existe"
             return None
         elif(nick < nodoRaiz.nickname):
-            return self.eliminandoUsuarioArbolNodoPlayer(nodoRaiz.izquierda, nick)
+            nodoRaiz.izquierda = self.eliminandoUsuarioArbolNodoPlayer(nodoRaiz.izquierda, nick)
+            return nodoRaiz.izquierda
         elif(nick > nodoRaiz.nickname):
-            return self.eliminandoUsuarioArbolNodoPlayer(nodoRaiz.derecha , nick)
+            nodoRaiz.derecha = self.eliminandoUsuarioArbolNodoPlayer(nodoRaiz.derecha , nick)
+            return nodoRaiz.derecha
         else:
             quitar = nodoRaiz
             if(quitar.izquierda == None):
                 nodoRaiz = quitar.derecha
             elif(quitar.derecha ==None):
-                nodoRaiz = quit.izquierda
+                nodoRaiz = quitar.izquierda
             else:
                 quitar = self.reemplazarNodoEliminando(quitar)
             quitar = None
@@ -345,15 +347,15 @@ class arbolABBPlayer:
             temp.derecha = act.derecha
         return act
 
-    def GenerarDotArreglado(self):
+    def GenerarDotArregladoFull(self):
         self.crearCarpeta()
-        filename =self.Path +"arbolABBUsuarios.dot"
+        filename =self.Path +"arbolABBUsuariosFull.dot"
         ArchivoABB = open(filename,'w')
         ArchivoABB.write("digraph Arbol {\n")
         ArchivoABB.write("      node [shape= \"record\" style=filled, fillcolor=bisque color=blue ];\n")
         ArchivoABB.write("      edge[color= black];\n")
 
-        self.GenerarArbol(self.raiz, ArchivoABB)
+        self.GenerarArbolFull(self.raiz, ArchivoABB)
 
         altura = self.AlturaArbolABB(self.raiz)
         cantidadNodos = self.CantidadNodosArbolABB(self.raiz)
@@ -368,10 +370,14 @@ class arbolABBPlayer:
         ArchivoABB.close()
 
 
-    def GenerarArbol(self, Nodo, ArchivoABB):
+    def GenerarArbolFull(self, Nodo, ArchivoABB):
         if(Nodo != None):
 
             ArchivoABB.write("       "+ Nodo.nickname + "       [label= \"<f0> Izq |<f1> "+ "Nickname: "+ Nodo.nickname.replace(" ","_")+ " \\n Password: " + Nodo.password + " \\n" + self.obtenerConectado(Nodo.estaConectado) + " \n |<f2> Der\" color=blue fillcolor = red style=\"rounded,filled\" ];\n")
+
+            ##este esta agregado para obtener arbol de contactos
+            if (Nodo.arbolAvlContactosPlayer != None):
+                Nodo.arbolAvlContactosPlayer.GenerarDotAVLCompleto(Nodo.nickname, ArchivoABB)
 
             if (Nodo.listaGamesUser != None):
                 Nodo.listaGamesUser.escribirListaDobleDeJuegos2(Nodo.nickname, ArchivoABB)
@@ -382,8 +388,8 @@ class arbolABBPlayer:
             if(Nodo.derecha != None):
                 ArchivoABB.write("       "+ Nodo.nickname +":f2 -> " + Nodo.derecha.nickname+":f1;\n")
 
-            self.GenerarArbol(Nodo.izquierda, ArchivoABB)
-            self.GenerarArbol(Nodo.derecha, ArchivoABB)
+            self.GenerarArbolFull(Nodo.izquierda, ArchivoABB)
+            self.GenerarArbolFull(Nodo.derecha, ArchivoABB)
 
 
     def cantidadNodosHoja(self):
@@ -416,6 +422,27 @@ class arbolABBPlayer:
         contenido = ArchivoABB.read()
         return contenido
 
+    def leerArchivoDotContactos(self):
+##        self.GenerarDot()
+        filename =self.Path +"arbolABBUsuariosContactos.dot"
+        ArchivoABB = open(filename,'r')
+        contenido = ArchivoABB.read()
+        return contenido
+
+    def leerArchivoDotSemi(self):
+##        self.GenerarDot()
+        filename =self.Path +"arbolABBUsuariosSemi.dot"
+        ArchivoABB = open(filename,'r')
+        contenido = ArchivoABB.read()
+        return contenido
+
+
+    def leerArchivoDotFull(self):
+##        self.GenerarDot()
+        filename =self.Path +"arbolABBUsuariosFull.dot"
+        ArchivoABB = open(filename,'r')
+        contenido = ArchivoABB.read()
+        return contenido
 
     def obtenerConectado(self, conec):
         if(conec == True):
@@ -551,6 +578,96 @@ class arbolABBPlayer:
             lista666.append((Nodo.listaGamesUser.obtenerPorcentajeTirosAcertados(), Nodo.nickname + "__"))
             self.obteniendoListadoPlayerBestShooters(lista666, Nodo.derecha)
         return lista666
+
+    def GenerarDotArregladoSemi(self):
+        self.crearCarpeta()
+        filename =self.Path +"arbolABBUsuariosSemi.dot"
+        ArchivoABB = open(filename,'w')
+        ArchivoABB.write("digraph Arbol {\n")
+        ArchivoABB.write("      node [shape= \"record\" style=filled, fillcolor=bisque color=blue ];\n")
+        ArchivoABB.write("      edge[color= black];\n")
+
+        self.GenerarArbolSemi(self.raiz, ArchivoABB)
+
+        altura = self.AlturaArbolABB(self.raiz)
+        cantidadNodos = self.CantidadNodosArbolABB(self.raiz)
+        niveles = altura - 1
+        hojas = 0
+        ramas = 0
+        hojas = self.cantidadNodosHoja()
+        ramas = cantidadNodos - hojas - 1
+        ArchivoABB.write("      info666[ color=blue label = \"Datos del Arbol \\n " +" Altura: "+ str(altura) + "\\n " + "Niveles: " + str(niveles) +"\\n " +"# de Nodos: " +str(cantidadNodos)  + "\\n " + "# de Hojas: " + str(hojas) +"\\n " + "# de Ramas: " + str(ramas) +"\" fontsize=\"12.0\" ] \n")
+        ArchivoABB.write(" \n         label = \" Arbol de Usuarios Registrados   \"  \n ")
+        ArchivoABB.write('}')
+        ArchivoABB.close()
+
+
+    def GenerarArbolSemi(self, Nodo, ArchivoABB):
+        if(Nodo != None):
+
+            ArchivoABB.write("       "+ Nodo.nickname + "       [label= \"<f0> Izq |<f1> "+ "Nickname: "+ Nodo.nickname.replace(" ","_")+ " \\n Password: " + Nodo.password + " \\n" + self.obtenerConectado(Nodo.estaConectado) + " \n |<f2> Der\" color=blue fillcolor = red style=\"rounded,filled\" ];\n")
+##
+##            ##este esta agregado para obtener arbol de contactos
+##            if (Nodo.arbolAvlContactosPlayer != None):
+##                Nodo.arbolAvlContactosPlayer.GenerarDotAVLCompleto(Nodo.nickname, ArchivoABB)
+
+            if (Nodo.listaGamesUser != None):
+                Nodo.listaGamesUser.escribirListaDobleDeJuegos2(Nodo.nickname, ArchivoABB)
+
+            if(Nodo.izquierda != None):
+                ArchivoABB.write("       "+ Nodo.nickname+":f0 -> "+ Nodo.izquierda.nickname+":f1;\n")
+
+            if(Nodo.derecha != None):
+                ArchivoABB.write("       "+ Nodo.nickname +":f2 -> " + Nodo.derecha.nickname+":f1;\n")
+
+            self.GenerarArbolSemi(Nodo.izquierda, ArchivoABB)
+            self.GenerarArbolSemi(Nodo.derecha, ArchivoABB)
+
+
+    def GenerarDotArregladoContactos(self):
+        self.crearCarpeta()
+        filename =self.Path +"arbolABBUsuariosContactos.dot"
+        ArchivoABB = open(filename,'w')
+        ArchivoABB.write("digraph Arbol {\n")
+        ArchivoABB.write("      node [shape= \"record\" style=filled, fillcolor=bisque color=blue ];\n")
+        ArchivoABB.write("      edge[color= black];\n")
+
+        self.GenerarArbolContactos(self.raiz, ArchivoABB)
+
+        altura = self.AlturaArbolABB(self.raiz)
+        cantidadNodos = self.CantidadNodosArbolABB(self.raiz)
+        niveles = altura - 1
+        hojas = 0
+        ramas = 0
+        hojas = self.cantidadNodosHoja()
+        ramas = cantidadNodos - hojas - 1
+        ArchivoABB.write("      info666[ color=blue label = \"Datos del Arbol \\n " +" Altura: "+ str(altura) + "\\n " + "Niveles: " + str(niveles) +"\\n " +"# de Nodos: " +str(cantidadNodos)  + "\\n " + "# de Hojas: " + str(hojas) +"\\n " + "# de Ramas: " + str(ramas) +"\" fontsize=\"12.0\" ] \n")
+        ArchivoABB.write(" \n         label = \" Arbol de Usuarios Registrados   \"  \n ")
+        ArchivoABB.write('}')
+        ArchivoABB.close()
+
+
+    def GenerarArbolContactos(self, Nodo, ArchivoABB):
+        if(Nodo != None):
+
+            ArchivoABB.write("       "+ Nodo.nickname + "       [label= \"<f0> Izq |<f1> "+ "Nickname: "+ Nodo.nickname.replace(" ","_")+ " \\n Password: " + Nodo.password + " \\n" + self.obtenerConectado(Nodo.estaConectado) + " \n |<f2> Der\" color=blue fillcolor = red style=\"rounded,filled\" ];\n")
+
+            ##este esta agregado para obtener arbol de contactos
+            if (Nodo.arbolAvlContactosPlayer != None):
+                Nodo.arbolAvlContactosPlayer.GenerarDotAVLCompleto(Nodo.nickname, ArchivoABB)
+
+##            if (Nodo.listaGamesUser != None):
+##                Nodo.listaGamesUser.escribirListaDobleDeJuegos2(Nodo.nickname, ArchivoABB)
+
+            if(Nodo.izquierda != None):
+                ArchivoABB.write("       "+ Nodo.nickname+":f0 -> "+ Nodo.izquierda.nickname+":f1;\n")
+
+            if(Nodo.derecha != None):
+                ArchivoABB.write("       "+ Nodo.nickname +":f2 -> " + Nodo.derecha.nickname+":f1;\n")
+
+            self.GenerarArbolContactos(Nodo.izquierda, ArchivoABB)
+            self.GenerarArbolContactos(Nodo.derecha, ArchivoABB)
+
 
 
 

@@ -1,0 +1,525 @@
+digraph MatrizOrtogonal_200412823 {
+    rankdir = LR
+    graph [ranksep=0.25 nodesep=0.25] 
+    node[shape= box style = filled color = limegreen] 
+    edge[color= black] 
+
+    subgraph cluster_Dimension0 { 
+        graph [ranksep=0.25 nodesep=0.25] 
+        node[shape= box style = filled color = limegreen ] 
+        edge[color= black] 
+        Nivel_1[label ="Nivel 1"] 
+           Nivel_1->D_1F_0C_R
+
+        rank = same {
+        Nivel_1->D_1F_12C_0
+        };
+
+        Nivel_1 [fillcolor=brown] 
+         D_1F_0C_R[label ="Col: R "] 
+           D_1F_0C_R->Nivel_1
+           D_1F_0C_R->D_1F_0C_U
+
+        rank = same {
+        D_1F_0C_R->D_1F_26C_RV_Sateli_Fi_26_Co_R_Di_1
+        };
+
+        D_1F_0C_R [fillcolor=orange] 
+         D_1F_0C_U[label ="Col: U "] 
+           D_1F_0C_U->D_1F_0C_R
+           D_1F_0C_U->D_1F_0C_Z
+
+        rank = same {
+        D_1F_0C_U->D_1F_12C_UV_Sateli_Fi_12_Co_U_Di_1
+        };
+
+        D_1F_0C_U [fillcolor=orange] 
+         D_1F_0C_Z[label ="Col: Z "] 
+           D_1F_0C_Z->D_1F_0C_U
+
+        rank = same {
+        D_1F_0C_Z->D_1F_13C_ZV_Sateli_Fi_13_Co_Z_Di_1
+        };
+
+        D_1F_0C_Z [fillcolor=orange] 
+         D_1F_12C_0[label ="Fil: 12"] 
+           D_1F_12C_0->D_1F_12C_UV_Sateli_Fi_12_Co_U_Di_1
+
+        rank = same {
+        D_1F_12C_0->Nivel_1
+        D_1F_12C_0->D_1F_13C_0
+        };
+
+        D_1F_12C_0 [fillcolor=orange] 
+         D_1F_12C_UV_Sateli_Fi_12_Co_U_Di_1[label ="Sateli 
+ Fi:12-Co:U-Di:1" fontsize="10.0"] 
+           D_1F_12C_UV_Sateli_Fi_12_Co_U_Di_1->D_1F_12C_0
+
+        rank = same {
+        D_1F_12C_UV_Sateli_Fi_12_Co_U_Di_1->D_1F_0C_U
+        };
+
+        D_1F_13C_0[label ="Fil: 13"] 
+           D_1F_13C_0->D_1F_13C_ZV_Sateli_Fi_13_Co_Z_Di_1
+
+        rank = same {
+        D_1F_13C_0->D_1F_12C_0
+        D_1F_13C_0->D_1F_26C_0
+        };
+
+        D_1F_13C_0 [fillcolor=orange] 
+         D_1F_13C_ZV_Sateli_Fi_13_Co_Z_Di_1[label ="Sateli 
+ Fi:13-Co:Z-Di:1" fontsize="10.0"] 
+           D_1F_13C_ZV_Sateli_Fi_13_Co_Z_Di_1->D_1F_13C_0
+
+        rank = same {
+        D_1F_13C_ZV_Sateli_Fi_13_Co_Z_Di_1->D_1F_0C_Z
+        };
+
+        D_1F_26C_0[label ="Fil: 26"] 
+           D_1F_26C_0->D_1F_26C_RV_Sateli_Fi_26_Co_R_Di_1
+
+        rank = same {
+        D_1F_26C_0->D_1F_13C_0
+        };
+
+        D_1F_26C_0 [fillcolor=orange] 
+         D_1F_26C_RV_Sateli_Fi_26_Co_R_Di_1[label ="Sateli 
+ Fi:26-Co:R-Di:1" fontsize="10.0"] 
+           D_1F_26C_RV_Sateli_Fi_26_Co_R_Di_1->D_1F_26C_0
+
+        rank = same {
+        D_1F_26C_RV_Sateli_Fi_26_Co_R_Di_1->D_1F_0C_R
+        };
+
+        label = "Nivel de Satelites "
+ }
+    subgraph cluster_Dimension2 { 
+        graph [ranksep=0.25 nodesep=0.25] 
+        node[shape= box style = filled color = limegreen ] 
+        edge[color= black] 
+        Nivel_2[label ="Nivel 2"] 
+           Nivel_2->D_2F_0C_A
+
+        rank = same {
+        Nivel_2->D_2F_17C_0
+        };
+
+        Nivel_2 [fillcolor=brown] 
+         D_2F_0C_A[label ="Col: A "] 
+           D_2F_0C_A->Nivel_2
+           D_2F_0C_A->D_2F_0C_B
+
+        rank = same {
+        D_2F_0C_A->D_2F_21C_AV_Avion_Fi_21_Co_A_Di_2
+        };
+
+        D_2F_0C_A [fillcolor=orange] 
+         D_2F_0C_B[label ="Col: B "] 
+           D_2F_0C_B->D_2F_0C_A
+           D_2F_0C_B->D_2F_0C_C
+
+        rank = same {
+        D_2F_0C_B->D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2
+        };
+
+        D_2F_0C_B [fillcolor=orange] 
+         D_2F_0C_C[label ="Col: C "] 
+           D_2F_0C_C->D_2F_0C_B
+           D_2F_0C_C->D_2F_0C_L
+
+        rank = same {
+        D_2F_0C_C->D_2F_21C_CV_Avion_Fi_21_Co_C_Di_2
+        };
+
+        D_2F_0C_C [fillcolor=orange] 
+         D_2F_0C_L[label ="Col: L "] 
+           D_2F_0C_L->D_2F_0C_C
+           D_2F_0C_L->D_2F_0C_M
+
+        rank = same {
+        D_2F_0C_L->D_2F_18C_LV_Avion_Fi_18_Co_L_Di_2
+        };
+
+        D_2F_0C_L [fillcolor=orange] 
+         D_2F_0C_M[label ="Col: M "] 
+           D_2F_0C_M->D_2F_0C_L
+           D_2F_0C_M->D_2F_0C_N
+
+        rank = same {
+        D_2F_0C_M->D_2F_17C_MV_Avion_Fi_17_Co_M_Di_2
+        };
+
+        D_2F_0C_M [fillcolor=orange] 
+         D_2F_0C_N[label ="Col: N "] 
+           D_2F_0C_N->D_2F_0C_M
+
+        rank = same {
+        D_2F_0C_N->D_2F_18C_NV_Avion_Fi_18_Co_N_Di_2
+        };
+
+        D_2F_0C_N [fillcolor=orange] 
+         D_2F_17C_0[label ="Fil: 17"] 
+           D_2F_17C_0->D_2F_17C_MV_Avion_Fi_17_Co_M_Di_2
+
+        rank = same {
+        D_2F_17C_0->Nivel_2
+        D_2F_17C_0->D_2F_18C_0
+        };
+
+        D_2F_17C_0 [fillcolor=orange] 
+         D_2F_17C_MV_Avion_Fi_17_Co_M_Di_2[label ="Avion 
+ Fi:17-Co:M-Di:2" fontsize="10.0"] 
+           D_2F_17C_MV_Avion_Fi_17_Co_M_Di_2->D_2F_17C_0
+
+        rank = same {
+        D_2F_17C_MV_Avion_Fi_17_Co_M_Di_2->D_2F_0C_M
+        D_2F_17C_MV_Avion_Fi_17_Co_M_Di_2->D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2
+        };
+
+        D_2F_18C_0[label ="Fil: 18"] 
+           D_2F_18C_0->D_2F_18C_LV_Avion_Fi_18_Co_L_Di_2
+
+        rank = same {
+        D_2F_18C_0->D_2F_17C_0
+        D_2F_18C_0->D_2F_19C_0
+        };
+
+        D_2F_18C_0 [fillcolor=orange] 
+         D_2F_18C_LV_Avion_Fi_18_Co_L_Di_2[label ="Avion 
+ Fi:18-Co:L-Di:2" fontsize="10.0"] 
+           D_2F_18C_LV_Avion_Fi_18_Co_L_Di_2->D_2F_18C_0
+           D_2F_18C_LV_Avion_Fi_18_Co_L_Di_2->D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2
+
+        rank = same {
+        D_2F_18C_LV_Avion_Fi_18_Co_L_Di_2->D_2F_0C_L
+        };
+
+        D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2[label ="Avion 
+ Fi:18-Co:M-Di:2" fontsize="10.0"] 
+           D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2->D_2F_18C_LV_Avion_Fi_18_Co_L_Di_2
+           D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2->D_2F_18C_NV_Avion_Fi_18_Co_N_Di_2
+
+        rank = same {
+        D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2->D_2F_17C_MV_Avion_Fi_17_Co_M_Di_2
+        D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2->D_2F_19C_MV_Avion_Fi_19_Co_M_Di_2
+        };
+
+        D_2F_18C_NV_Avion_Fi_18_Co_N_Di_2[label ="Avion 
+ Fi:18-Co:N-Di:2" fontsize="10.0"] 
+           D_2F_18C_NV_Avion_Fi_18_Co_N_Di_2->D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2
+
+        rank = same {
+        D_2F_18C_NV_Avion_Fi_18_Co_N_Di_2->D_2F_0C_N
+        };
+
+        D_2F_19C_0[label ="Fil: 19"] 
+           D_2F_19C_0->D_2F_19C_MV_Avion_Fi_19_Co_M_Di_2
+
+        rank = same {
+        D_2F_19C_0->D_2F_18C_0
+        D_2F_19C_0->D_2F_20C_0
+        };
+
+        D_2F_19C_0 [fillcolor=orange] 
+         D_2F_19C_MV_Avion_Fi_19_Co_M_Di_2[label ="Avion 
+ Fi:19-Co:M-Di:2" fontsize="10.0"] 
+           D_2F_19C_MV_Avion_Fi_19_Co_M_Di_2->D_2F_19C_0
+
+        rank = same {
+        D_2F_19C_MV_Avion_Fi_19_Co_M_Di_2->D_2F_18C_MV_Avion_Fi_18_Co_M_Di_2
+        D_2F_19C_MV_Avion_Fi_19_Co_M_Di_2->D_2F_20C_MV_Avion_Fi_20_Co_M_Di_2
+        };
+
+        D_2F_20C_0[label ="Fil: 20"] 
+           D_2F_20C_0->D_2F_20C_MV_Avion_Fi_20_Co_M_Di_2
+
+        rank = same {
+        D_2F_20C_0->D_2F_19C_0
+        D_2F_20C_0->D_2F_21C_0
+        };
+
+        D_2F_20C_0 [fillcolor=orange] 
+         D_2F_20C_MV_Avion_Fi_20_Co_M_Di_2[label ="Avion 
+ Fi:20-Co:M-Di:2" fontsize="10.0"] 
+           D_2F_20C_MV_Avion_Fi_20_Co_M_Di_2->D_2F_20C_0
+
+        rank = same {
+        D_2F_20C_MV_Avion_Fi_20_Co_M_Di_2->D_2F_19C_MV_Avion_Fi_19_Co_M_Di_2
+        };
+
+        D_2F_21C_0[label ="Fil: 21"] 
+           D_2F_21C_0->D_2F_21C_AV_Avion_Fi_21_Co_A_Di_2
+
+        rank = same {
+        D_2F_21C_0->D_2F_20C_0
+        D_2F_21C_0->D_2F_22C_0
+        };
+
+        D_2F_21C_0 [fillcolor=orange] 
+         D_2F_21C_AV_Avion_Fi_21_Co_A_Di_2[label ="Avion 
+ Fi:21-Co:A-Di:2" fontsize="10.0"] 
+           D_2F_21C_AV_Avion_Fi_21_Co_A_Di_2->D_2F_21C_0
+           D_2F_21C_AV_Avion_Fi_21_Co_A_Di_2->D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2
+
+        rank = same {
+        D_2F_21C_AV_Avion_Fi_21_Co_A_Di_2->D_2F_0C_A
+        };
+
+        D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2[label ="Avion 
+ Fi:21-Co:B-Di:2" fontsize="10.0"] 
+           D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2->D_2F_21C_AV_Avion_Fi_21_Co_A_Di_2
+           D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2->D_2F_21C_CV_Avion_Fi_21_Co_C_Di_2
+
+        rank = same {
+        D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2->D_2F_0C_B
+        D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2->D_2F_22C_BV_Avion_Fi_22_Co_B_Di_2
+        };
+
+        D_2F_21C_CV_Avion_Fi_21_Co_C_Di_2[label ="Avion 
+ Fi:21-Co:C-Di:2" fontsize="10.0"] 
+           D_2F_21C_CV_Avion_Fi_21_Co_C_Di_2->D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2
+
+        rank = same {
+        D_2F_21C_CV_Avion_Fi_21_Co_C_Di_2->D_2F_0C_C
+        };
+
+        D_2F_22C_0[label ="Fil: 22"] 
+           D_2F_22C_0->D_2F_22C_BV_Avion_Fi_22_Co_B_Di_2
+
+        rank = same {
+        D_2F_22C_0->D_2F_21C_0
+        };
+
+        D_2F_22C_0 [fillcolor=orange] 
+         D_2F_22C_BV_Avion_Fi_22_Co_B_Di_2[label ="Avion 
+ Fi:22-Co:B-Di:2" fontsize="10.0"] 
+           D_2F_22C_BV_Avion_Fi_22_Co_B_Di_2->D_2F_22C_0
+
+        rank = same {
+        D_2F_22C_BV_Avion_Fi_22_Co_B_Di_2->D_2F_21C_BV_Avion_Fi_21_Co_B_Di_2
+        };
+
+        label = "Nivel de Aviones "
+ }
+    subgraph cluster_Dimension3 { 
+        graph [ranksep=0.25 nodesep=0.25] 
+        node[shape= box style = filled color = limegreen ] 
+        edge[color= black] 
+        Nivel_3[label ="Nivel 3"] 
+           Nivel_3->D_3F_0C_F
+
+        rank = same {
+        Nivel_3->D_3F_10C_0
+        };
+
+        Nivel_3 [fillcolor=brown] 
+         D_3F_0C_F[label ="Col: F "] 
+           D_3F_0C_F->Nivel_3
+
+        rank = same {
+        D_3F_0C_F->D_3F_10C_FV_Ship_Fi_10_Co_F_Di_3
+        };
+
+        D_3F_0C_F [fillcolor=orange] 
+         D_3F_10C_0[label ="Fil: 10"] 
+           D_3F_10C_0->D_3F_10C_FV_Ship_Fi_10_Co_F_Di_3
+
+        rank = same {
+        D_3F_10C_0->Nivel_3
+        D_3F_10C_0->D_3F_8C_0
+        };
+
+        D_3F_10C_0 [fillcolor=orange] 
+         D_3F_10C_FV_Ship_Fi_10_Co_F_Di_3[label ="Ship 
+ Fi:10-Co:F-Di:3" fontsize="10.0"] 
+           D_3F_10C_FV_Ship_Fi_10_Co_F_Di_3->D_3F_10C_0
+
+        rank = same {
+        D_3F_10C_FV_Ship_Fi_10_Co_F_Di_3->D_3F_0C_F
+        D_3F_10C_FV_Ship_Fi_10_Co_F_Di_3->D_3F_8C_FV_Ship_Fi_8_Co_F_Di_3
+        };
+
+        D_3F_8C_0[label ="Fil: 8"] 
+           D_3F_8C_0->D_3F_8C_FV_Ship_Fi_8_Co_F_Di_3
+
+        rank = same {
+        D_3F_8C_0->D_3F_10C_0
+        D_3F_8C_0->D_3F_9C_0
+        };
+
+        D_3F_8C_0 [fillcolor=orange] 
+         D_3F_8C_FV_Ship_Fi_8_Co_F_Di_3[label ="Ship 
+ Fi:8-Co:F-Di:3" fontsize="10.0"] 
+           D_3F_8C_FV_Ship_Fi_8_Co_F_Di_3->D_3F_8C_0
+
+        rank = same {
+        D_3F_8C_FV_Ship_Fi_8_Co_F_Di_3->D_3F_10C_FV_Ship_Fi_10_Co_F_Di_3
+        D_3F_8C_FV_Ship_Fi_8_Co_F_Di_3->D_3F_9C_FV_Ship_Fi_9_Co_F_Di_3
+        };
+
+        D_3F_9C_0[label ="Fil: 9"] 
+           D_3F_9C_0->D_3F_9C_FV_Ship_Fi_9_Co_F_Di_3
+
+        rank = same {
+        D_3F_9C_0->D_3F_8C_0
+        };
+
+        D_3F_9C_0 [fillcolor=orange] 
+         D_3F_9C_FV_Ship_Fi_9_Co_F_Di_3[label ="Ship 
+ Fi:9-Co:F-Di:3" fontsize="10.0"] 
+           D_3F_9C_FV_Ship_Fi_9_Co_F_Di_3->D_3F_9C_0
+
+        rank = same {
+        D_3F_9C_FV_Ship_Fi_9_Co_F_Di_3->D_3F_8C_FV_Ship_Fi_8_Co_F_Di_3
+        };
+
+        label = "Nivel de Barcos "
+ }
+    subgraph cluster_Dimension4 { 
+        graph [ranksep=0.25 nodesep=0.25] 
+        node[shape= box style = filled color = limegreen ] 
+        edge[color= black] 
+        Nivel_4[label ="Nivel 4"] 
+           Nivel_4->D_4F_0C_D
+
+        rank = same {
+        Nivel_4->D_4F_26C_0
+        };
+
+        Nivel_4 [fillcolor=brown] 
+         D_4F_0C_D[label ="Col: D "] 
+           D_4F_0C_D->Nivel_4
+           D_4F_0C_D->D_4F_0C_E
+
+        rank = same {
+        D_4F_0C_D->D_4F_27C_DV_Subma_Fi_27_Co_D_Di_4
+        };
+
+        D_4F_0C_D [fillcolor=orange] 
+         D_4F_0C_E[label ="Col: E "] 
+           D_4F_0C_E->D_4F_0C_D
+           D_4F_0C_E->D_4F_0C_L
+
+        rank = same {
+        D_4F_0C_E->D_4F_27C_EV_Subma_Fi_27_Co_E_Di_4
+        };
+
+        D_4F_0C_E [fillcolor=orange] 
+         D_4F_0C_L[label ="Col: L "] 
+           D_4F_0C_L->D_4F_0C_E
+           D_4F_0C_L->D_4F_0C_Q
+
+        rank = same {
+        D_4F_0C_L->D_4F_26C_LV_Subma_Fi_26_Co_L_Di_4
+        };
+
+        D_4F_0C_L [fillcolor=orange] 
+         D_4F_0C_Q[label ="Col: Q "] 
+           D_4F_0C_Q->D_4F_0C_L
+
+        rank = same {
+        D_4F_0C_Q->D_4F_7C_QV_Subma_Fi_7_Co_Q_Di_4
+        };
+
+        D_4F_0C_Q [fillcolor=orange] 
+         D_4F_26C_0[label ="Fil: 26"] 
+           D_4F_26C_0->D_4F_26C_LV_Subma_Fi_26_Co_L_Di_4
+
+        rank = same {
+        D_4F_26C_0->Nivel_4
+        D_4F_26C_0->D_4F_27C_0
+        };
+
+        D_4F_26C_0 [fillcolor=orange] 
+         D_4F_26C_LV_Subma_Fi_26_Co_L_Di_4[label ="Subma 
+ Fi:26-Co:L-Di:4" fontsize="10.0"] 
+           D_4F_26C_LV_Subma_Fi_26_Co_L_Di_4->D_4F_26C_0
+
+        rank = same {
+        D_4F_26C_LV_Subma_Fi_26_Co_L_Di_4->D_4F_0C_L
+        };
+
+        D_4F_27C_0[label ="Fil: 27"] 
+           D_4F_27C_0->D_4F_27C_DV_Subma_Fi_27_Co_D_Di_4
+
+        rank = same {
+        D_4F_27C_0->D_4F_26C_0
+        D_4F_27C_0->D_4F_7C_0
+        };
+
+        D_4F_27C_0 [fillcolor=orange] 
+         D_4F_27C_DV_Subma_Fi_27_Co_D_Di_4[label ="Subma 
+ Fi:27-Co:D-Di:4" fontsize="10.0"] 
+           D_4F_27C_DV_Subma_Fi_27_Co_D_Di_4->D_4F_27C_0
+           D_4F_27C_DV_Subma_Fi_27_Co_D_Di_4->D_4F_27C_EV_Subma_Fi_27_Co_E_Di_4
+
+        rank = same {
+        D_4F_27C_DV_Subma_Fi_27_Co_D_Di_4->D_4F_0C_D
+        };
+
+        D_4F_27C_EV_Subma_Fi_27_Co_E_Di_4[label ="Subma 
+ Fi:27-Co:E-Di:4" fontsize="10.0"] 
+           D_4F_27C_EV_Subma_Fi_27_Co_E_Di_4->D_4F_27C_DV_Subma_Fi_27_Co_D_Di_4
+
+        rank = same {
+        D_4F_27C_EV_Subma_Fi_27_Co_E_Di_4->D_4F_0C_E
+        };
+
+        D_4F_7C_0[label ="Fil: 7"] 
+           D_4F_7C_0->D_4F_7C_QV_Subma_Fi_7_Co_Q_Di_4
+
+        rank = same {
+        D_4F_7C_0->D_4F_27C_0
+        D_4F_7C_0->D_4F_8C_0
+        };
+
+        D_4F_7C_0 [fillcolor=orange] 
+         D_4F_7C_QV_Subma_Fi_7_Co_Q_Di_4[label ="Subma 
+ Fi:7-Co:Q-Di:4" fontsize="10.0"] 
+           D_4F_7C_QV_Subma_Fi_7_Co_Q_Di_4->D_4F_7C_0
+
+        rank = same {
+        D_4F_7C_QV_Subma_Fi_7_Co_Q_Di_4->D_4F_0C_Q
+        D_4F_7C_QV_Subma_Fi_7_Co_Q_Di_4->D_4F_8C_QV_Subma_Fi_8_Co_Q_Di_4
+        };
+
+        D_4F_8C_0[label ="Fil: 8"] 
+           D_4F_8C_0->D_4F_8C_QV_Subma_Fi_8_Co_Q_Di_4
+
+        rank = same {
+        D_4F_8C_0->D_4F_7C_0
+        D_4F_8C_0->D_4F_9C_0
+        };
+
+        D_4F_8C_0 [fillcolor=orange] 
+         D_4F_8C_QV_Subma_Fi_8_Co_Q_Di_4[label ="Subma 
+ Fi:8-Co:Q-Di:4" fontsize="10.0"] 
+           D_4F_8C_QV_Subma_Fi_8_Co_Q_Di_4->D_4F_8C_0
+
+        rank = same {
+        D_4F_8C_QV_Subma_Fi_8_Co_Q_Di_4->D_4F_7C_QV_Subma_Fi_7_Co_Q_Di_4
+        D_4F_8C_QV_Subma_Fi_8_Co_Q_Di_4->D_4F_9C_QV_Subma_Fi_9_Co_Q_Di_4
+        };
+
+        D_4F_9C_0[label ="Fil: 9"] 
+           D_4F_9C_0->D_4F_9C_QV_Subma_Fi_9_Co_Q_Di_4
+
+        rank = same {
+        D_4F_9C_0->D_4F_8C_0
+        };
+
+        D_4F_9C_0 [fillcolor=orange] 
+         D_4F_9C_QV_Subma_Fi_9_Co_Q_Di_4[label ="Subma 
+ Fi:9-Co:Q-Di:4" fontsize="10.0"] 
+           D_4F_9C_QV_Subma_Fi_9_Co_Q_Di_4->D_4F_9C_0
+
+        rank = same {
+        D_4F_9C_QV_Subma_Fi_9_Co_Q_Di_4->D_4F_8C_QV_Subma_Fi_8_Co_Q_Di_4
+        };
+
+        label = "Nivel de Submarinos "
+ }
+   label = " Matriz Ortogonal Inicial Stin94  "  
+ 
+}

@@ -80,10 +80,36 @@ def eliminarUsuario():
 @app.route('/modificarPlayer', methods=['POST'])
 def modificarUsuario():
     nickLoguear_sent = request.form['Nick']
+    nickNuevo_sent = request.form['NickNuevo']
     passwLoguear_sent = request.form['Passw']
     print nickLoguear_sent + "    " + passwLoguear_sent
     userModificar = miJuego.arbolGeneralUsuarios.buscarUsuarioUsuarioEnArbol(nickLoguear_sent)
-    userModificar.password = passwLoguear_sent
+
+    estaCon = userModificar.estaConectado
+    yaexiste = userModificar.yaExisteEnJugadores
+    listaUsuarios = userModificar.listaGamesUser
+    matrizOrto = userModificar.matrizOrtogonalUser
+    matrizOrtoActual = userModificar.matrizOrtogonalUserActual
+    avlContactos = userModificar.arbolAvlContactosPlayer
+    maxGan = userModificar.maxGanados
+    efecti = userModificar.efectividad
+    facto = userModificar.factorBalance
+
+    miJuego.arbolGeneralUsuarios.eliminarUsuarioArbolNodoPlayer(nickLoguear_sent)
+
+    miJuego.arbolGeneralUsuarios.insertarPlayerArbolJugadores(nickNuevo_sent, passwLoguear_sent, estaCon)
+
+    recienIngresado = miJuego.arbolGeneralUsuarios.buscarUsuarioUsuarioEnArbol(nickNuevo_sent)
+    recienIngresado.estaConectado = estaCon
+    recienIngresado.yaExisteEnJugadores = yaexiste
+    recienIngresado.listaGamesUser = listaUsuarios
+    recienIngresado.matrizOrtogonalUser = matrizOrto
+    recienIngresado.matrizOrtogonalUserActual = matrizOrtoActual
+    recienIngresado.arbolAvlContactosPlayer = avlContactos
+    recienIngresado.maxGanados = maxGan
+    recienIngresado.efectividad = efecti
+    recienIngresado.factorBalance = facto
+
     return  "success"
 
 @app.route('/crearUsuario', methods=['POST'])
@@ -135,14 +161,36 @@ def mostrarMatrizPlayer2Inicial():
     app.logger.info(cadena)
     return  str(cadena)
 
-
-@app.route('/mostrarABB', methods=['GET'])
-def mostrarABB():
-    miJuego.arbolGeneralUsuarios.GenerarDotArreglado()
-    cadena = miJuego.arbolGeneralUsuarios.leerArchivoDot()
+##arbol abb completo listas y avl
+@app.route('/mostrarABBFull', methods=['GET'])
+def mostrarABBFull():
+    miJuego.arbolGeneralUsuarios.GenerarDotArregladoFull()
+    cadena = miJuego.arbolGeneralUsuarios.leerArchivoDotFull()
     app.logger.info(cadena)
     return  str(cadena)
 
+@app.route('/mostrarABBContactos', methods=['GET'])
+def mostrarABBContactos():
+    miJuego.arbolGeneralUsuarios.GenerarDotArregladoContactos()
+    cadena = miJuego.arbolGeneralUsuarios.leerArchivoDotContactos()
+    app.logger.info(cadena)
+    return  str(cadena)
+
+@app.route('/mostrarContactos', methods=['POST'])
+def mostrarContactos():
+    padre = request.form['Padre']
+    usuario = miJuego.arbolGeneralUsuarios.buscarUsuarioUsuarioEnArbol(padre)
+    usuario.arbolAvlContactosPlayer.GenerarDotAVL(padre)
+    cadena = usuario.arbolAvlContactosPlayer.leerArchivoDotContactosAVL(padre)
+    app.logger.info(cadena)
+    return  str(cadena)
+
+@app.route('/mostrarABBSemi', methods=['GET'])
+def mostrarABBSemi():
+    miJuego.arbolGeneralUsuarios.GenerarDotArregladoSemi()
+    cadena = miJuego.arbolGeneralUsuarios.leerArchivoDotSemi()
+    app.logger.info(cadena)
+    return  str(cadena)
 
 @app.route('/mostrarABBEspejo', methods=['GET'])
 def mostrarABBEspejo():
@@ -233,10 +281,59 @@ def verMejoresShooters():
     cadenita = miJuego.arbolGeneralUsuarios.obtenerListadoPlayersBestShooter()
     return cadenita
 
-##
-##if __name__ == '__main__':
-##    app.run(debug = True, port=8081)
+##modificaciones fase 2
+
+
+@app.route('/eliminarContacto', methods=['POST'])
+def eliminarContacto():
+    nickLoguear_sent = request.form['Nick']
+    padre_sent = request.form['Padre']
+    print "*******************************************************************"
+    print "*******************************************************************"
+    print "*******************************************************************"
+    print "Padre: " + padre_sent + " contacto: " + nickLoguear_sent
+    padre = miJuego.arbolGeneralUsuarios.buscarUsuarioUsuarioEnArbol(padre_sent)
+    if padre!=None:
+
+        padre.arbolAvlContactosPlayer.eliminarContacto(nickLoguear_sent)
+    return  "success"
+
+@app.route('/modificarContacto', methods=['POST'])
+def modificarContacto():
+    nickLoguear_sent = request.form['Nick']
+    nickLoguearMod_sent = request.form['NickModi']
+    passwLoguear_sent = request.form['Passw']
+    padre_sent = request.form['Padre']
+    print nickLoguear_sent + "    " + passwLoguear_sent
+    padre = miJuego.arbolGeneralUsuarios.buscarUsuarioUsuarioEnArbol(padre_sent)
+    padre.arbolAvlContactosPlayer.eliminarContacto(nickLoguear_sent)
+    padre.arbolAvlContactosPlayer.insertarUsuario(nickLoguearMod_sent, passwLoguear_sent, False)
+    return  "success"
+
+@app.route('/crearContacto', methods=['POST'])
+def crearContacto():
+    nickLoguear_sent = request.form['Nick']
+    passwLoguear_sent = request.form['Passw']
+    coneLoguear_sent = request.form['Conec']
+    padre_sent = request.form['Padre']
+    yaesta = False
+    app.logger.info("padre:"+padre_sent+" nick: " + nickLoguear_sent + " password: " + passwLoguear_sent)
+    padre = miJuego.arbolGeneralUsuarios.buscarUsuarioUsuarioEnArbol(padre_sent)
+    hijo = miJuego.arbolGeneralUsuarios.buscarUsuarioUsuarioEnArbol(nickLoguear_sent)
+    if(hijo!=None):
+        yaesta = True
+    padre.arbolAvlContactosPlayer.insertarUsuario(nickLoguear_sent, passwLoguear_sent, coneLoguear_sent)
+    hijo2 = padre.arbolAvlContactosPlayer.Buscar(nickLoguear_sent)
+    if(yaesta):
+        hijo2.yaExisteEnJugadores = True
+    app.logger.info("User creado: nick: " + nickLoguear_sent + " password: " + passwLoguear_sent)
+    return  "success"
+
+
 
 if __name__ == '__main__':
-    app.run(host='192.168.56.101', port ='5555')
+    app.run(debug = True, port=8081)
+
+##if __name__ == '__main__':
+##    app.run(host='192.168.56.101', port ='5555')
 

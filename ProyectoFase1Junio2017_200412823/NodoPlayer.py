@@ -13,6 +13,7 @@ import NodoJuegoListaDoble
 import ListaDobleDeJuegos
 import MatrizOrtogonal
 import NodoMatriz
+import arbolAVLContactos
 
 
 class NodoPlayer:
@@ -20,14 +21,24 @@ class NodoPlayer:
     def __init__(self):
         self.nickname = ""
         self.password=""
-        self.listaGamesUser = ListaDobleDeJuegos.ListaDobleDeJuegos()
         self.estaConectado = False
+        self.yaExisteEnJugadores = False
+        self.listaGamesUser = ListaDobleDeJuegos.ListaDobleDeJuegos()
         self.matrizOrtogonalUser = MatrizOrtogonal.MatrizOrtogonal()
         self.matrizOrtogonalUserActual = MatrizOrtogonal.MatrizOrtogonal()
+        self.arbolAvlContactosPlayer = arbolAVLContactos.arbolAVLContactos()
         self.maxGanados = 0
         self.efectividad = 0
         self.izquierda = None
         self.derecha = None
+        self.factorBalance=0
+        self.Siguiente=None
+        self.Anterior=None
+
+    def inicializarNodoPlayer(self, nic, pas, conec):
+        self.nickname = nic
+        self.password = pas
+        self.estaConectado = conec
 
 
     def verNodoPlayer(self):
@@ -47,5 +58,8 @@ class NodoPlayer:
 
     def setEstaConectado(self, isConectado):
         self.estaConectado = isConectado
+
+    def verNodoUsuasxrio(self):
+        return {"NameUsuario": self.NameUsuario, "Contrasenia": str(self.Contrasenia), "Direccion": self.Direccion, "DireccionActual": self.DireccionActual}
 
 
